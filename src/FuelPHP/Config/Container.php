@@ -92,6 +92,12 @@ class Container extends DataContainer
 		return $file;
 	}
 
+	/**
+	 * Set the  environment.
+	 *
+	 * @param   string  $enviroment  environment
+	 * @return  $this
+	 */
 	public function setEnvironment($environment)
 	{
 		if ($environment)
@@ -104,11 +110,22 @@ class Container extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * Get the environment
+	 *
+	 * @return  string  environment
+	 */
 	public function getEnvironment()
 	{
 		return $this->environment;
 	}
 
+	/**
+	 * Unload a config group
+	 *
+	 * @param   string  $group  group name
+	 * @return  $this
+	 */
 	public function unload($group)
 	{
 		$this->delete($group);
@@ -116,6 +133,13 @@ class Container extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * Reload a group.
+	 *
+	 * @param   string       $name  group name
+	 * @param   string|true  $group  true for same as $name or group name
+	 * @return  array|null   config array or null when not found
+	 */
 	public function reload($name, $group = true)
 	{
 		if ($group === true)
@@ -128,6 +152,13 @@ class Container extends DataContainer
 		return $this->load($name, $group);
 	}
 
+	/**
+	 * Load a config file
+	 *
+	 * @param   string       $name  group name
+	 * @param   string|true  $group  true for same as $name or group name
+	 * @return  array|null   config array or null when not found
+	 */
 	public function load($name, $group = true)
 	{
 		if ($group === true)
@@ -165,6 +196,13 @@ class Container extends DataContainer
 		return $config;
 	}
 
+	/**
+	 * Store a config file
+	 *
+	 * @param   string     $group         group name
+	 * @param   string     $desctination  destination, null for same as $group
+	 * @throws  Exception
+	 */
 	public function save($group, $destination = null)
 	{
 		if ($destination === null)
