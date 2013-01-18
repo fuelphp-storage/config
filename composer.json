@@ -1,0 +1,29 @@
+{
+	"name": "fuelphp/dependency-injection",
+	"type": "library",
+	"description": "Dependency handling.",
+	"keywords": ["dependency", "injection", "dpenedencies"],
+	"homepage": "https://github.com/fuelphp/dependency-injection",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "FuelPHP Development Team",
+			"email": "team@fuelphp.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3",
+		"fuelphp/filesystem": "dev-master",
+		"fuelphp/common": "dev-develop"
+	},
+	"require-dev": {
+		"symfony/yaml": "2.1.x"
+	},
+	"suggest": {
+		"symfony/yaml": "Allows YAML config handling."
+	},
+	"autoload": {
+		"psr-0": { "FuelPHP\\Config": "src/" }
+	},
+	"minimum-stability": "dev"
+}
