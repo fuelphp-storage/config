@@ -11,6 +11,7 @@ There are multiple formats in which config files can be handled:
 
 The only odd one is `ini`. It's the only filetype that can't be automatically formatted for saving. Symfony\Yaml is needed in order to parse and format `.yml` files.
 
+
 ## Loading
 
 Get a new container
@@ -72,3 +73,17 @@ $container->save('data', 'other/file');
 ```
 
 The container is aware of overwrites so it'll always save the config file in the place last loaded, therefor overwriting all that came before.
+
+## Accessing data
+
+The config Container extends the FuelPHP\Common\DataContainer class. Therefor it's possible to retrieve the data in two ways: through ->get and the ArrayAccess way.
+
+```
+$setting = $config->get('setting');
+
+// is the same as
+
+$setting = $config['setting'];
+```
+
+The first way does allow you to supply a default

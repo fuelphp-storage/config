@@ -4,10 +4,16 @@ use FuelPHP\Config\Container;
 
 class DataContainerTests extends PHPUnit_Framework_TestCase
 {
+	protected $base;
+
+	public function setUp()
+	{
+		$this->base = realpath(__DIR__.'/../resources');
+	}
 	public function testLoad()
 	{
 		$config = new Container(new FuelPHP\FileSystem\Finder);
-		$config->addPath(__DIR__.'/../resources');
+		$config->addPath($this->base);
 		$expected = array('some' => 'setting');
 		$this->assertEquals($expected, $config->load('conf', true));
 		$this->assertEquals($expected, $config->load('conf', true));
@@ -158,7 +164,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$c = new Container('env');
 		$this->assertFalse($c->findDestination('this'));
-		$found = __DIR__.'/../resources/conf.php';
+		$found = realpath(__DIR__.'/../resources/conf.php');
 		$this->assertEquals($found, $c->findDestination($found));
 		$c->addPaths(array(__DIR__.'/../resources'));
 		$this->assertEquals($found, $c->findDestination('conf'));

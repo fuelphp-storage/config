@@ -172,7 +172,7 @@ class Container extends DataContainer
 		}
 
 		$name = $this->ensureDefaultFormat($name);
-		$paths = $this->finder->findAll($name);
+		$paths = $this->finder->findAllFiles($name);
 
 		if (empty($paths))
 		{
@@ -243,7 +243,7 @@ class Container extends DataContainer
 			return $destination;
 		}
 
-		if ($location = $this->finder->findReversed($destination))
+		if ($location = $this->finder->findFileReversed($destination))
 		{
 			return $location;
 		}
