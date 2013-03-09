@@ -1,6 +1,6 @@
 # FuelPHP Config
 
-This package handles config files. It's responsible for loading, saving and accessing config settings.
+This library handles config files. It's responsible for loading, saving and accessing config settings.
 
 There are multiple formats in which config files can be handled:
 
