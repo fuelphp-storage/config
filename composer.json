@@ -12,9 +12,9 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.3",
+		"php": ">=5.4",
 		"fuelphp/filesystem": "dev-master",
-		"fuelphp/common": "dev-develop"
+		"fuelphp/common": "dev-master"
 	},
 	"require-dev": {
 		"symfony/yaml": "2.1.x"
@@ -23,7 +23,7 @@
 		"symfony/yaml": "Allows YAML config handling."
 	},
 	"autoload": {
-		"psr-0": { "FuelPHP\\Config": "src/" }
+		"psr-0": { "Fuel\\Config": "src/" }
 	},
 	"minimum-stability": "dev"
 }

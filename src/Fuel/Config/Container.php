@@ -1,9 +1,17 @@
 <?php
+/**
+ * @package    Fuel\Config
+ * @version    2.0
+ * @author     Fuel Development Team
+ * @license    MIT License
+ * @copyright  2010 - 2013 Fuel Development Team
+ * @link       http://fuelphp.com
+ */
 
-namespace FuelPHP\Config;
+namespace Fuel\Config;
 
-use FuelPHP\FileSystem\Finder;
-use FuelPHP\Common\DataContainer;
+use Fuel\FileSystem\Finder;
+use Fuel\Common\DataContainer;
 use Exception;
 
 class Container extends DataContainer
@@ -14,7 +22,7 @@ class Container extends DataContainer
 	protected $environment;
 
 	/**
-	 * @var  FuelPHP\FileSystem\Finder  $finder  config finder
+	 * @var  Fuel\FileSystem\Finder  $finder  config finder
 	 */
 	protected $finder;
 
@@ -273,7 +281,7 @@ class Container extends DataContainer
 			return $this->handlers[$extension];
 		}
 
-		$class = 'FuelPHP\Config\\'.ucfirst($extension);
+		$class = 'Fuel\Config\\'.ucfirst($extension);
 
 		if ( ! class_exists($class, true))
 		{

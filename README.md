@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fuelphp/config.png?branch=master)](https://travis-ci.org/fuelphp/common)
+
 # FuelPHP Config
 
 This library handles config files. It's responsible for loading, saving and accessing config settings.

@@ -1,6 +1,6 @@
 <?php
 
-use FuelPHP\Config\Container;
+use Fuel\Config\Container;
 
 class DataContainerTests extends PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	}
 	public function testLoad()
 	{
-		$config = new Container(new FuelPHP\FileSystem\Finder);
+		$config = new Container(new Fuel\FileSystem\Finder);
 		$config->addPath($this->base);
 		$expected = array('some' => 'setting');
 		$this->assertEquals($expected, $config->load('conf', true));
@@ -156,8 +156,8 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testSetHandler()
 	{
 		$c = new Container;
-		$c->setHandler('woo', new FuelPHP\Config\Php);
-		$this->assertInstanceOf('FuelPHP\Config\Php', $c->getHandler('woo'));
+		$c->setHandler('woo', new Fuel\Config\Php);
+		$this->assertInstanceOf('Fuel\Config\Php', $c->getHandler('woo'));
 	}
 
 	public function testPaths()

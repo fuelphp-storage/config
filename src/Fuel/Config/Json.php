@@ -1,10 +1,16 @@
 <?php
+/**
+ * @package    Fuel\Config
+ * @version    2.0
+ * @author     Fuel Development Team
+ * @license    MIT License
+ * @copyright  2010 - 2013 Fuel Development Team
+ * @link       http://fuelphp.com
+ */
 
-namespace FuelPHP\Config;
+namespace Fuel\Config;
 
-use Symfony\Component\Yaml\Yaml;
-
-class Yml implements Handler
+class Json implements Handler
 {
     /**
      * Load a config file
@@ -16,7 +22,7 @@ class Yml implements Handler
     {
         $contents = file_get_contents($file);
 
-        return Yaml::parse($contents);
+        return json_decode($contents, true);
     }
 
     /**
@@ -27,6 +33,6 @@ class Yml implements Handler
      */
     public function format($data)
     {
-        return Yaml::dump($data);
+        return json_encode($data);
     }
 }
