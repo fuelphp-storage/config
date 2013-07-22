@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/fuelphp/config.png?branch=master)](https://travis-ci.org/fuelphp/common)
+[![Build Status](https://travis-ci.org/fuelphp/config.png?branch=master)](https://travis-ci.org/fuelphp/config)
 
 # FuelPHP Config
 
