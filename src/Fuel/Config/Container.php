@@ -164,10 +164,10 @@ class Container extends DataContainer
 	 * Load a config file
 	 *
 	 * @param   string       $name  group name
-	 * @param   string|true  $group  true for same as $name or group name
+	 * @param   null|string|true  $group  true for same as $name or group name, null for no group
 	 * @return  array|null   config array or null when not found
 	 */
-	public function load($name, $group = true)
+	public function load($name, $group = null)
 	{
 		if ($group === true)
 		{
@@ -199,6 +199,10 @@ class Container extends DataContainer
 		if ($group)
 		{
 			$this->set($group, $config);
+		}
+		elseif ($group === null)
+		{
+			$this->merge($config);
 		}
 
 		return $config;
