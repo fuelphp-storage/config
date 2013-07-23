@@ -45,7 +45,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$c = new Container();
 		$c->addPath(__DIR__.'/../resources');
-		$c->load('conf');
+		$c->load('conf', true);
 		$c->save('conf', 'new');
 		$this->assertTrue(file_exists(__DIR__.'/../resources/new.php'));
 		$this->assertEquals(
@@ -60,7 +60,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$c = new Container();
 		$c->addPath(__DIR__.'/../resources');
-		$c->load('ini.ini');
+		$c->load('ini.ini', true);
 		$expected = array(
 			'key' => array(
 				'one' => '1',
@@ -122,7 +122,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$c = new Container;
 		$c->setDefaultFormat('json');
-		$this->assertFalse($c->load('conf'));
+		$this->assertFalse($c->load('conf', true));
 		$this->assertEquals('thing.json', $c->ensureDefaultFormat('thing'));
 		$this->assertEquals('json', $c->getDefaultFormat());
 	}
