@@ -44,16 +44,19 @@ class Container extends DataContainer
 	 */
 	public function __construct($environment = null, $finder = null, $defaultFormat = 'php')
 	{
-		if ($environment instanceof Finder) {
+		if ($environment instanceof Finder)
+		{
 			$finder = $environment;
 			$environment = null;
 		}
 
-		if ( ! $finder) {
+		if ( ! $finder)
+		{
 			$finder = new Finder();
 		}
 
-		if ($environment) {
+		if ($environment)
+		{
 			$this->setEnvironment($environment);
 		}
 

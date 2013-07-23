@@ -36,7 +36,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$config = new Container('develop');
 		$config->addPath(__DIR__.'/../resources');
-		$config->load('conf');
+		$config->load('conf', true);
 		$result = $config->get('conf.some');
 		$this->assertEquals('develop', $result);
 	}
