@@ -14,8 +14,8 @@ namespace Fuel\Config;
  * FuelPHP Composer library framework bootstrap
  */
 
-// register the services of this library
-\Fuel::getDic()->registerService(new ServicesProvider);
+// register the services of this composer library
+\Dependency::getDic()->registerService(new ServicesProvider);
 
 /**
  * FuelPHP Composer library application bootstrap
