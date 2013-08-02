@@ -196,7 +196,7 @@ class Container extends DataContainer
 		{
 			$extension = pathinfo($path, PATHINFO_EXTENSION);
 			$handler = $this->getHandler($extension);
-			$config = arr_merge($config, $handler->load($path));
+			$config = \Arr::merge($config, $handler->load($path));
 		}
 
 		if ($group)
