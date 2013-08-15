@@ -8,20 +8,18 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Config;
+namespace Fuel\Config\Providers;
 
 use Fuel\Dependency\ServiceProvider;
 
 /**
- * ServicesProvider class
- *
- * Defines the services published by this namespace to the DiC
+ * FuelPHP ServiceProvider class for this package
  *
  * @package  Fuel\Config
  *
  * @since  1.0.0
  */
-class ServicesProvider extends ServiceProvider
+class FuelServiceProvider extends ServiceProvider
 {
 	/**
 	 * @var  array  list of service names provided by this provider
@@ -36,7 +34,7 @@ class ServicesProvider extends ServiceProvider
 		// \Fuel\Config\Container
 		$this->register('config', function ($dic, $environment = null, $finder = null, $defaultFormat = 'php')
 		{
-			return new Container($environment, $finder, $defaultFormat);
+			return $dic->resolve('Fuel\Config\Container', array($environment, $finder, $defaultFormat));
 		});
 	}
 }
