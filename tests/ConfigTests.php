@@ -13,6 +13,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testLoad()
 	{
 		$config = new Container(new Fuel\FileSystem\Finder);
+		$config->setConfigFolder('');
 		$config->addPath($this->base);
 		$expected = array('some' => 'setting');
 		$this->assertEquals($expected, $config->load('conf', true));
@@ -26,6 +27,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testLoadGroup()
 	{
 		$config = new Container;
+		$config->setConfigFolder('');
 		$config->addPath(__DIR__.'/../resources');
 		$expected = array('some' => 'setting');
 		$this->assertEquals($expected, $config->load('conf', true));
@@ -35,6 +37,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testLoadEnv()
 	{
 		$config = new Container('develop');
+		$config->setConfigFolder('');
 		$config->addPath(__DIR__.'/../resources');
 		$config->load('conf', true);
 		$result = $config->get('conf.some');
@@ -44,6 +47,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testSave()
 	{
 		$c = new Container();
+		$c->setConfigFolder('');
 		$c->addPath(__DIR__.'/../resources');
 		$c->load('conf', true);
 		$c->save('conf', 'new');
@@ -95,10 +99,10 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 		$c->set('j', $data);
 		$c->addPath(__DIR__.'/../resources');
 		$c->save('j', 'data.json');
-		$this->assertTrue(file_exists(__DIR__.'/../resources/data.json'));
+		$this->assertTrue(file_exists(__DIR__.'/../resources/config/data.json'));
 		$c->load('data.json', 'new');
 		$this->assertEquals($data, $c->get('new'));
-		unlink(__DIR__.'/../resources/data.json');
+		unlink(__DIR__.'/../resources/config/data.json');
 	}
 
 	public function testYaml()
@@ -109,6 +113,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 		);
 
 		$c = new Container;
+		$c->setConfigFolder('');
 		$c->set('j', $data);
 		$c->addPath(__DIR__.'/../resources');
 		$c->save('j', 'data.yml');
@@ -121,6 +126,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testDefaultFormat()
 	{
 		$c = new Container;
+		$c->setConfigFolder('');
 		$c->setDefaultFormat('json');
 		$this->assertFalse($c->load('conf', true));
 		$this->assertEquals('thing.json', $c->ensureDefaultFormat('thing'));
