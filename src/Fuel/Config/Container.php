@@ -32,6 +32,11 @@ class Container extends DataContainer
 	protected $handlers;
 
 	/**
+	 * @var  string  config folder name prefix
+	 */
+	public $configFolder = 'config';
+
+	/**
 	 * @var  string  $defaultFormat  default config format
 	 */
 	protected $defaultFormat = 'php';
@@ -100,7 +105,7 @@ class Container extends DataContainer
 			$file .= '.'.$this->defaultFormat;
 		}
 
-		return $file;
+		return empty($this->configFolder) ? $file : $this->configFolder.DIRECTORY_SEPARATOR.$file;
 	}
 
 	/**
@@ -311,6 +316,19 @@ class Container extends DataContainer
 	public function setHandler($extension, Handler $loader)
 	{
 		$this->handlers[$extension] = $loader;
+
+		return $this;
+	}
+
+	/**
+	 * Set the config folder
+	 *
+	 * @param   string  $folder  folder path
+	 * @return  $this
+	 */
+	public function setConfigFolder($folder)
+	{
+		$this->configFolder = rtrim($folder, '/ ');
 
 		return $this;
 	}
