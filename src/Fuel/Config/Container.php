@@ -34,7 +34,7 @@ class Container extends DataContainer
 	/**
 	 * @var  string  config folder name prefix
 	 */
-	public $configFolder = 'config';
+	protected $configFolder = 'config';
 
 	/**
 	 * @var  string  $defaultFormat  default config format
