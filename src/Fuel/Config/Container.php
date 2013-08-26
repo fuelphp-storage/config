@@ -118,7 +118,7 @@ class Container extends DataContainer
 	{
 		if ($environment)
 		{
-			$environment = trim($environment, '/');
+			$environment = trim($environment, DIRECTORY_SEPARATOR);
 		}
 
 		$this->environment = $environment;
@@ -277,7 +277,7 @@ class Container extends DataContainer
 
 		$last = end($paths);
 
-		return $last.ltrim($destination, '/');
+		return $last.ltrim($destination, DIRECTORY_SEPARATOR);
 	}
 
 	/**
@@ -328,7 +328,7 @@ class Container extends DataContainer
 	 */
 	public function setConfigFolder($folder)
 	{
-		$this->configFolder = rtrim($folder, '/ ');
+		$this->configFolder = rtrim($folder, DIRECTORY_SEPARATOR);
 
 		return $this;
 	}
@@ -341,7 +341,7 @@ class Container extends DataContainer
 	 */
 	public function addPath($path)
 	{
-		$path = rtrim($path, '/').'/';
+		$path = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
 		$this->finder->addPath($path);
 
 		if ($this->environment)
@@ -386,7 +386,7 @@ class Container extends DataContainer
 	 */
 	public function removePath($path)
 	{
-		$path = rtrim($path, '/').'/';
+		$path = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
 		$this->finder->removePath($path);
 
 		if ($this->environment)
