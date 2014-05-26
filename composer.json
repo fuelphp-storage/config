@@ -23,7 +23,6 @@
 		"symfony/yaml": "Allows YAML config handling."
 	},
 	"autoload": {
-		"psr-0": { "Fuel\\Config": "src/" }
-	},
-	"minimum-stability": "dev"
+		"psr-4": { "Fuel\\Config\\": "src/" }
+	}
 }
