@@ -1,18 +1,22 @@
 <?php
 
-use Fuel\Config\Container;
+namespace Fuel\Config;
 
-class DataContainerTests extends PHPUnit_Framework_TestCase
+use Codeception\TestCase\Test;
+
+class DataContainerTest extends Test
 {
 	protected $base;
 
 	public function setUp()
 	{
+		parent::setUp();
 		$this->base = realpath(__DIR__.'/../resources');
 	}
+
 	public function testLoad()
 	{
-		$config = new Container(new Fuel\FileSystem\Finder);
+		$config = new Container(new \Fuel\FileSystem\Finder);
 		$config->setConfigFolder('');
 		$config->addPath($this->base);
 		$expected = array('some' => 'setting');
@@ -28,7 +32,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$config = new Container;
 		$config->setConfigFolder('');
-		$config->addPath(__DIR__.'/../resources');
+		$config->addPath($this->base);
 		$expected = array('some' => 'setting');
 		$this->assertEquals($expected, $config->load('conf', true));
 		$this->assertEquals($expected, $config->get('conf'));
@@ -38,7 +42,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$config = new Container('develop');
 		$config->setConfigFolder('');
-		$config->addPath(__DIR__.'/../resources');
+		$config->addPath($this->base);
 		$config->load('conf', true);
 		$result = $config->get('conf.some');
 		$this->assertEquals('develop', $result);
@@ -48,22 +52,23 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$c = new Container();
 		$c->setConfigFolder('');
-		$c->addPath(__DIR__.'/../resources');
+		$c->addPath($this->base);
 		$c->load('conf', true);
 		$c->save('conf', 'new');
-		$this->assertTrue(file_exists(__DIR__.'/../resources/new.php'));
+
+		$this->assertFileExists($this->base.'/new.php');
 		$this->assertEquals(
-			file_get_contents(__DIR__.'/../resources/new.php'),
-			file_get_contents(__DIR__.'/../resources/conf.php')
+			include $this->base.'/conf.php',
+			include $this->base.'/new.php'
 		);
 
-		unlink(__DIR__.'/../resources/new.php');
+		unlink($this->base.'/new.php');
 	}
 
 	public function testIni()
 	{
 		$c = new Container();
-		$c->addPath(__DIR__.'/../resources');
+		$c->addPath($this->base);
 		$c->load('ini.ini', true);
 		$expected = array(
 			'key' => array(
@@ -79,7 +84,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException Exception
+	 * @expectedException \Exception
 	 */
 	public function testIniSave()
 	{
@@ -97,12 +102,12 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 
 		$c = new Container;
 		$c->set('j', $data);
-		$c->addPath(__DIR__.'/../resources');
+		$c->addPath($this->base);
 		$c->save('j', 'data.json');
-		$this->assertTrue(file_exists(__DIR__.'/../resources/config/data.json'));
+		$this->assertTrue(file_exists($this->base.'/config/data.json'));
 		$c->load('data.json', 'new');
 		$this->assertEquals($data, $c->get('new'));
-		unlink(__DIR__.'/../resources/config/data.json');
+		unlink($this->base.'/config/data.json');
 	}
 
 	public function testYaml()
@@ -115,12 +120,12 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 		$c = new Container;
 		$c->setConfigFolder('');
 		$c->set('j', $data);
-		$c->addPath(__DIR__.'/../resources');
+		$c->addPath($this->base);
 		$c->save('j', 'data.yml');
-		$this->assertTrue(file_exists(__DIR__.'/../resources/data.yml'));
+		$this->assertTrue(file_exists($this->base.'/data.yml'));
 		$c->load('data.yml', 'new');
 		$this->assertEquals($data, $c->get('new'));
-		unlink(__DIR__.'/../resources/data.yml');
+		unlink($this->base.'/data.yml');
 	}
 
 	public function testDefaultFormat()
@@ -142,7 +147,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException Exception
+	 * @expectedException \Exception
 	 */
 	public function testSaveNoGroup()
 	{
@@ -151,7 +156,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException Exception
+	 * @expectedException \Exception
 	 */
 	public function testNoHandler()
 	{
@@ -162,7 +167,7 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	public function testSetHandler()
 	{
 		$c = new Container;
-		$c->setHandler('woo', new Fuel\Config\Php);
+		$c->setHandler('woo', new \Fuel\Config\Php);
 		$this->assertInstanceOf('Fuel\Config\Php', $c->getHandler('woo'));
 	}
 
@@ -170,16 +175,16 @@ class DataContainerTests extends PHPUnit_Framework_TestCase
 	{
 		$c = new Container('env');
 		$this->assertFalse($c->findDestination('this'));
-		$found = realpath(__DIR__.'/../resources/conf.php');
+		$found = realpath($this->base.'/conf.php');
 		$this->assertEquals($found, $c->findDestination($found));
-		$c->addPaths(array(__DIR__.'/../resources'));
+		$c->addPaths(array($this->base));
 		$this->assertEquals($found, $c->findDestination('conf'));
-		$c->removePaths(array(__DIR__.'/../resources'));
+		$c->removePaths(array($this->base));
 		$this->assertFalse($c->findDestination('ini.ini'));
 	}
 
 	/**
-	 * @expectedException Exception
+	 * @expectedException \Exception
 	 */
 	public function testInvalidSavePath()
 	{

@@ -17,7 +17,7 @@
 		"fuelphp/common": "dev-master"
 	},
 	"require-dev": {
-		"symfony/yaml": "2.1.x"
+		"codeception/codeception": "~2.0"
 	},
 	"suggest": {
 		"symfony/yaml": "Allows YAML config handling."
