@@ -22,7 +22,7 @@ class Container extends DataContainer
 	protected $environment;
 
 	/**
-	 * @var  Fuel\FileSystem\Finder  $finder  config finder
+	 * @var  \Fuel\FileSystem\Finder  $finder  config finder
 	 */
 	protected $finder;
 
@@ -336,7 +336,7 @@ class Container extends DataContainer
 	/**
 	 * Add a path.
 	 *
-	 * @param   array  $path  paths
+	 * @param   string  $path
 	 * @return  $this
 	 */
 	public function addPath($path)
