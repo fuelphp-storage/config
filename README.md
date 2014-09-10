@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/fuelphp/config.png?branch=master)](https://travis-ci.org/fuelphp/config)
+[![Code Coverage](https://scrutinizer-ci.com/g/fuelphp/config/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fuelphp/config/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fuelphp/config/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fuelphp/config/?branch=master)
+[![HHVM Status](http://hhvm.h4cc.de/badge/fuelphp/config.svg)](http://hhvm.h4cc.de/package/fuelphp/config)
 
 # FuelPHP Config
 
