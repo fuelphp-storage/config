@@ -293,7 +293,7 @@ class Container extends DataContainer
 			return $this->handlers[$extension];
 		}
 
-		$class = 'Fuel\Config\\'.ucfirst($extension);
+		$class = 'Fuel\Config\Handler\\'.ucfirst($extension);
 
 		if ( ! class_exists($class, true))
 		{

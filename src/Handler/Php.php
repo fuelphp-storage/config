@@ -8,7 +8,9 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Config;
+namespace Fuel\Config\Handler;
+
+use Fuel\Config\Handler;
 
 /**
  * PHP configuration loading and formatting logic
