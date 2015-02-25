@@ -8,12 +8,15 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Config;
+namespace Fuel\Config\Handler;
+
+use Fuel\Config\Handler;
+use Symfony\Component\Yaml\Yaml;
 
 /**
- * JSON configuration loading and formatting logic
+ * YAML configuration loading and formatting logic
  */
-class Json implements Handler
+class Yml implements Handler
 {
 	/**
 	 * {@inheritdoc}
@@ -22,7 +25,7 @@ class Json implements Handler
     {
         $contents = file_get_contents($file);
 
-        return json_decode($contents, true);
+        return Yaml::parse($contents);
     }
 
 	/**
@@ -30,6 +33,6 @@ class Json implements Handler
 	 */
     public function format($data)
     {
-        return json_encode($data);
+        return Yaml::dump($data);
     }
 }

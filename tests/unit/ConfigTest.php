@@ -167,8 +167,8 @@ class DataContainerTest extends Test
 	public function testSetHandler()
 	{
 		$c = new Container;
-		$c->setHandler('woo', new \Fuel\Config\Php);
-		$this->assertInstanceOf('Fuel\Config\Php', $c->getHandler('woo'));
+		$c->setHandler('woo', new Handler\Php);
+		$this->assertInstanceOf('Fuel\Config\Handler\Php', $c->getHandler('woo'));
 	}
 
 	public function testPaths()

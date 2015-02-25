@@ -8,7 +8,9 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Config;
+namespace Fuel\Config\Handler;
+
+use Fuel\Config\Handler;
 
 /**
  * INI configuration loading and formatting (not implemented) logic
