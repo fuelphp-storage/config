@@ -4,7 +4,6 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/fuelphp/config.svg?style=flat-square)](https://scrutinizer-ci.com/g/fuelphp/config)
 [![Quality Score](https://img.shields.io/scrutinizer/g/fuelphp/config.svg?style=flat-square)](https://scrutinizer-ci.com/g/fuelphp/config)
 [![HHVM Status](https://img.shields.io/hhvm/fuelphp/config.svg?style=flat-square)](http://hhvm.h4cc.de/package/fuelphp/config)
-[![Total Downloads](https://img.shields.io/packagist/dt/fuelphp/config.svg?style=flat-square)](https://packagist.org/packages/fuelphp/config)
 
 
 This library handles config files. It's responsible for loading, saving and accessing config settings.
