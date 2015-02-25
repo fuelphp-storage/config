@@ -12,10 +12,6 @@ namespace Fuel\Config;
 
 /**
  * JSON configuration loading and formatting logic
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 class Json implements Handler
 {

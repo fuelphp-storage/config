@@ -156,7 +156,7 @@ class DataContainerTest extends Test
 	}
 
 	/**
-	 * @expectedException \Exception
+	 * @expectedException \RuntimeException
 	 */
 	public function testNoHandler()
 	{

@@ -12,10 +12,6 @@ namespace Fuel\Config;
 
 /**
  * Accepts a Config Container instance
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 interface ConfigAware
 {

@@ -12,10 +12,6 @@ namespace Fuel\Config;
 
 /**
  * PHP configuration loading and formatting logic
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 class Php implements Handler
 {

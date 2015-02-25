@@ -14,10 +14,6 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * YAML configuration loading and formatting logic
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 class Yml implements Handler
 {

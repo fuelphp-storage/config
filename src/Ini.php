@@ -12,10 +12,6 @@ namespace Fuel\Config;
 
 /**
  * INI configuration loading and formatting (not implemented) logic
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 class Ini implements Handler
 {

@@ -15,10 +15,6 @@ use Fuel\Common\DataContainer;
 
 /**
  * Holds configuration data
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 class Container extends DataContainer
 {
@@ -288,7 +284,7 @@ class Container extends DataContainer
 	 *
 	 * @return Handler
 	 *
-	 * @throws \Exception
+	 * @throws \RuntimeException
 	 */
 	public function getHandler($extension)
 	{
@@ -301,7 +297,7 @@ class Container extends DataContainer
 
 		if ( ! class_exists($class, true))
 		{
-			throw new \Exception('Could not find config handler for extension: '.$extension);
+			throw new \RuntimeException('Could not find config handler for extension: '.$extension);
 		}
 
 		$handler = new $class;

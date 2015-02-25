@@ -12,10 +12,6 @@ namespace Fuel\Config;
 
 /**
  * Configuration loading and formatting logic
- *
- * @package Fuel\Config
- *
- * @since 2.0
  */
 interface Handler
 {
