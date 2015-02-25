@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -12,14 +12,18 @@ namespace Fuel\Config;
 
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * YAML configuration loading and formatting logic
+ *
+ * @package Fuel\Config
+ *
+ * @since 2.0
+ */
 class Yml implements Handler
 {
-    /**
-     * Load a config file
-     *
-     * @param  string $file file path
-     * @return array  config contents
-     */
+	/**
+	 * {@inheritdoc}
+	 */
     public function load($file)
     {
         $contents = file_get_contents($file);
@@ -27,12 +31,9 @@ class Yml implements Handler
         return Yaml::parse($contents);
     }
 
-    /**
-     * Format a config file for saving.
-     *
-     * @param  array  $data config data
-     * @return string data export
-     */
+	/**
+	 * {@inheritdoc}
+	 */
     public function format($data)
     {
         return Yaml::dump($data);

@@ -11,29 +11,32 @@
 namespace Fuel\Config;
 
 /**
- * JSON configuration loading and formatting logic
+ * Accepts a Config Container instance
  *
  * @package Fuel\Config
  *
  * @since 2.0
  */
-class Json implements Handler
+trait ConfigAcceptor
 {
 	/**
-	 * {@inheritdoc}
+	 * @var Container
 	 */
-    public function load($file)
-    {
-        $contents = file_get_contents($file);
-
-        return json_decode($contents, true);
-    }
+	protected $config;
 
 	/**
 	 * {@inheritdoc}
 	 */
-    public function format($data)
-    {
-        return json_encode($data);
-    }
+	public function getConfig()
+	{
+		return $this->config;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setConfig(Container $config)
+	{
+		$this->config = $config;
+	}
 }

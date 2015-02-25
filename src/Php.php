@@ -4,19 +4,23 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
 namespace Fuel\Config;
 
+/**
+ * PHP configuration loading and formatting logic
+ *
+ * @package Fuel\Config
+ *
+ * @since 2.0
+ */
 class Php implements Handler
 {
 	/**
-	 * Load a config file
-	 *
-	 * @param  string $file file path
-	 * @return array  config contents
+	 * {@inheritdoc}
 	 */
 	public function load($file)
 	{
@@ -24,10 +28,7 @@ class Php implements Handler
 	}
 
 	/**
-	 * Format a config file for saving.
-	 *
-	 * @param  array  $data config data
-	 * @return string data export
+	 * {@inheritdoc}
 	 */
 	public function format($data)
 	{

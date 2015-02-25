@@ -1,9 +1,11 @@
-[![Build Status](https://travis-ci.org/fuelphp/config.png?branch=master)](https://travis-ci.org/fuelphp/config)
-[![Code Coverage](https://scrutinizer-ci.com/g/fuelphp/config/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fuelphp/config/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fuelphp/config/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fuelphp/config/?branch=master)
-[![HHVM Status](http://hhvm.h4cc.de/badge/fuelphp/config.svg)](http://hhvm.h4cc.de/package/fuelphp/config)
+# Fuel Config
 
-# FuelPHP Config
+[![Build Status](https://img.shields.io/travis/fuelphp/config.svg?style=flat-square)](https://travis-ci.org/fuelphp/config)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/fuelphp/config.svg?style=flat-square)](https://scrutinizer-ci.com/g/fuelphp/config)
+[![Quality Score](https://img.shields.io/scrutinizer/g/fuelphp/config.svg?style=flat-square)](https://scrutinizer-ci.com/g/fuelphp/config)
+[![HHVM Status](https://img.shields.io/hhvm/fuelphp/config.svg?style=flat-square)](http://hhvm.h4cc.de/package/fuelphp/config)
+[![Total Downloads](https://img.shields.io/packagist/dt/fuelphp/config.svg?style=flat-square)](https://packagist.org/packages/fuelphp/config)
+
 
 This library handles config files. It's responsible for loading, saving and accessing config settings.
 
@@ -22,7 +24,7 @@ The only odd one is `ini`. It's the only filetype that can't be automatically fo
 Get a new container
 
 ```
-use FuelPHP\Config\Container;
+use Fuel\Config\Container;
 
 $config = new Container;
 ```
@@ -47,6 +49,7 @@ $config->load('data.json');
 // Load json data
 ```
 
+
 ## Default format
 
 It's also possible to set a default config format. By default this is `php`.
@@ -58,6 +61,7 @@ $data = $config->load('data');
 // this will load data.json
 ```
 
+
 ## Environment settings
 
 An environment will be used to load a secondary config file and will overwrite the default settings.
@@ -65,6 +69,7 @@ An environment will be used to load a secondary config file and will overwrite t
 ```
 $config->setEnvironment('develop');
 ```
+
 
 ## Saving
 
@@ -78,6 +83,7 @@ $container->save('data', 'other/file');
 ```
 
 The container is aware of overwrites so it'll always save the config file in the place last loaded, therefor overwriting all that came before.
+
 
 ## Accessing data
 

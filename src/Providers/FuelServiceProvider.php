@@ -4,37 +4,37 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
 namespace Fuel\Config\Providers;
 
-use Fuel\Dependency\ServiceProvider;
+use Fuel\Config\Container;
+use League\Container\ServiceProvider;
 
 /**
- * FuelPHP ServiceProvider class for this package
+ * Fuel ServiceProvider class for this package
  *
- * @package  Fuel\Config
+ * @package Fuel\Config
  *
- * @since  1.0.0
+ * @since 2.0
  */
 class FuelServiceProvider extends ServiceProvider
 {
 	/**
-	 * @var  array  list of service names provided by this provider
+	 * @var array
 	 */
-	public $provides = array('config');
+	protected $provides = ['config'];
 
 	/**
-	 * Service provider definitions
+	 * {@inheritdoc}
 	 */
-	public function provide()
+	public function register()
 	{
-		// \Fuel\Config\Container
-		$this->register('config', function ($dic, $environment = null, $finder = null, $defaultFormat = 'php')
+		$this->container->add('config', function ($environment = null, $finder = null, $defaultFormat = 'php')
 		{
-			return $dic->resolve('Fuel\Config\Container', array($environment, $finder, $defaultFormat));
+			return new Container($environment, $finder, $defaultFormat);
 		});
 	}
 }

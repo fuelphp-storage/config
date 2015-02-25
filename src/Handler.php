@@ -4,27 +4,36 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
 namespace Fuel\Config;
 
+/**
+ * Configuration loading and formatting logic
+ *
+ * @package Fuel\Config
+ *
+ * @since 2.0
+ */
 interface Handler
 {
     /**
-     * Load a config file
+     * Loads a config file
      *
-     * @param  string $file file path
-     * @return array  config contents
+     * @param string $file
+     *
+     * @return array
      */
     public function load($file);
 
     /**
-     * Format a config file for saving.
+     * Formats a config file for saving
      *
-     * @param  array  $data config data
-     * @return string data export
+     * @param array $data
+     *
+     * @return string
      */
     public function format($data);
 }

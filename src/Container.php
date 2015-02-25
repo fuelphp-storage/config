@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -12,40 +12,45 @@ namespace Fuel\Config;
 
 use Fuel\FileSystem\Finder;
 use Fuel\Common\DataContainer;
-use Exception;
 
+/**
+ * Holds configuration data
+ *
+ * @package Fuel\Config
+ *
+ * @since 2.0
+ */
 class Container extends DataContainer
 {
 	/**
-	 * @var  string  $environment  environment name
+	 * @var string
 	 */
 	protected $environment;
 
 	/**
-	 * @var  \Fuel\FileSystem\Finder  $finder  config finder
+	 * @var Finder
 	 */
 	protected $finder;
 
 	/**
-	 * @var  array  $handlers  array of config file handlers
+	 * @var array
 	 */
 	protected $handlers;
 
 	/**
-	 * @var  string  config folder name prefix
+	 * @var string
 	 */
 	protected $configFolder = 'config';
 
 	/**
-	 * @var  string  $defaultFormat  default config format
+	 * @var string
 	 */
 	protected $defaultFormat = 'php';
 
 	/**
-	 * Constructor
-	 *
-	 * @param string $environment environment dir
-	 * @param Finder $finder      finder instance
+	 * @param string $environment
+	 * @param Finder $finder
+	 * @param string $defaultFormat
 	 */
 	public function __construct($environment = null, $finder = null, $defaultFormat = 'php')
 	{
@@ -70,22 +75,9 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Set the default format
+	 * Returns the default format
 	 *
-	 * @param   string  $format  default format
-	 * @return  $this
-	 */
-	public function setDefaultFormat($format)
-	{
-		$this->defaultFormat = $format;
-
-		return $this;
-	}
-
-	/**
-	 * Get the default format
-	 *
-	 * @return  string  the default format
+	 * @return string
 	 */
 	public function getDefaultFormat()
 	{
@@ -93,10 +85,21 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Ensure a default config format.
+	 * Sets the default format
 	 *
-	 * @param  string $file config file name
-	 * @return string file name with ensured extension
+	 * @param string $format
+	 */
+	public function setDefaultFormat($format)
+	{
+		$this->defaultFormat = $format;
+	}
+
+	/**
+	 * Ensures a default config format
+	 *
+	 * @param string $file
+	 *
+	 * @return string
 	 */
 	public function ensureDefaultFormat($file)
 	{
@@ -109,10 +112,19 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Set the  environment.
+	 * Returns the environment
 	 *
-	 * @param   string  $enviroment  environment
-	 * @return  $this
+	 * @return string
+	 */
+	public function getEnvironment()
+	{
+		return $this->environment;
+	}
+
+	/**
+	 * Sets the environment
+	 *
+	 * @param string $enviroment
 	 */
 	public function setEnvironment($environment)
 	{
@@ -122,39 +134,25 @@ class Container extends DataContainer
 		}
 
 		$this->environment = $environment;
-
-		return $this;
 	}
 
 	/**
-	 * Get the environment
+	 * Unloads a config group
 	 *
-	 * @return  string  environment
-	 */
-	public function getEnvironment()
-	{
-		return $this->environment;
-	}
-
-	/**
-	 * Unload a config group
-	 *
-	 * @param   string  $group  group name
-	 * @return  $this
+	 * @param string $group
 	 */
 	public function unload($group)
 	{
 		$this->delete($group);
-
-		return $this;
 	}
 
 	/**
-	 * Reload a group.
+	 * Reloads a group
 	 *
-	 * @param   string       $name  group name
-	 * @param   string|true  $group  true for same as $name or group name
-	 * @return  array|null   config array or null when not found
+	 * @param string         $name
+	 * @param string|boolean $group
+	 *
+	 * @return array|null
 	 */
 	public function reload($name, $group = true)
 	{
@@ -169,11 +167,12 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Load a config file
+	 * Loads a config file
 	 *
-	 * @param   string       $name  group name
-	 * @param   null|string|true  $group  true for same as $name or group name, null for no group
-	 * @return  array|null   config array or null when not found
+	 * @param string              $name
+	 * @param null|string|boolean $group
+	 *
+	 * @return array|null
 	 */
 	public function load($name, $group = null)
 	{
@@ -217,11 +216,12 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Store a config file
+	 * Stores a config file
 	 *
-	 * @param   string     $group         group name
-	 * @param   string     $desctination  destination, null for same as $group
-	 * @throws  Exception
+	 * @param string      $group
+	 * @param string|null $destination
+	 *
+	 * @throws \RuntimeException
 	 */
 	public function save($group, $destination = null)
 	{
@@ -232,7 +232,7 @@ class Container extends DataContainer
 
 		if ( ! $this->has($group))
 		{
-			throw new Exception('Unable to save unexistig config group: '.$group);
+			throw new \RuntimeException('Unable to save non-existig config group: '.$group);
 		}
 
 		$destination = $this->ensureDefaultFormat($destination);
@@ -244,17 +244,18 @@ class Container extends DataContainer
 
 		if ( ! $path)
 		{
-			throw new Exception('Could not save group "'.$group.'" as "'.$destination.'".');
+			throw new \RuntimeException(sprintf('Could not save group "%" as "%s".', $group, $destination));
 		}
 
 		return file_put_contents($path, $output);
 	}
 
 	/**
-	 * Find a config file.
+	 * Finds a config file
 	 *
-	 * @param   string  $destination  destination path
-	 * @return  string  resolved destination
+	 * @param string $destination
+	 *
+	 * @return string
 	 */
 	public function findDestination($destination)
 	{
@@ -281,10 +282,13 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Retrieve the handler for a file type
+	 * Retrieves the handler for a file type
 	 *
-	 * @param   string   $extension  extension
-	 * @return  Handler  file handler
+	 * @param string $extension
+	 *
+	 * @return Handler
+	 *
+	 * @throws \Exception
 	 */
 	public function getHandler($extension)
 	{
@@ -297,7 +301,7 @@ class Container extends DataContainer
 
 		if ( ! class_exists($class, true))
 		{
-			throw new Exception('Could not find config handler for extension: '.$extension);
+			throw new \Exception('Could not find config handler for extension: '.$extension);
 		}
 
 		$handler = new $class;
@@ -307,37 +311,32 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Handler injection method.
+	 * Sets a handler for an extension
 	 *
-	 * @param   string  $extension  entension
-	 * @param   Loader  $loader     config loader
-	 * @return  $this
+	 * @param string  $extension
+	 * @param Handler $handler
 	 */
 	public function setHandler($extension, Handler $loader)
 	{
 		$this->handlers[$extension] = $loader;
-
-		return $this;
 	}
 
 	/**
-	 * Set the config folder
+	 * Sets the config folder
 	 *
-	 * @param   string  $folder  folder path
-	 * @return  $this
+	 * @param string $folder
 	 */
 	public function setConfigFolder($folder)
 	{
 		$this->configFolder = rtrim($folder, DIRECTORY_SEPARATOR);
-
-		return $this;
 	}
 
 	/**
-	 * Add a path.
+	 * Adds a path
 	 *
-	 * @param   string  $path
-	 * @return  $this
+	 * @param string $path
+	 *
+	 * @return $this
 	 */
 	public function addPath($path)
 	{
@@ -353,36 +352,19 @@ class Container extends DataContainer
 	}
 
 	/**
-	 * Adds paths to look in.
+	 * Adds paths to look in
 	 *
-	 * @param array $paths paths
-	 * @return  $this
+	 * @param array $paths
 	 */
 	public function addPaths(array $paths)
 	{
 		array_map(array($this, 'addPath'), $paths);
-
-		return $this;
 	}
 
 	/**
-	 * Remove paths.
+	 * Removes a path
 	 *
-	 * @param   array  $path  path
-	 * @return  $this
-	 */
-	public function removePaths(array $paths)
-	{
-		array_map(array($this, 'removePath'), $paths);
-
-		return $this;
-	}
-
-	/**
-	 * Remove a path.
-	 *
-	 * @param   array  $paths  paths
-	 * @return  $this
+	 * @param string $path
 	 */
 	public function removePath($path)
 	{
@@ -393,7 +375,15 @@ class Container extends DataContainer
 		{
 			$this->finder->removePath($path.$this->environment);
 		}
+	}
 
-		return $this;
+	/**
+	 * Removes paths
+	 *
+	 * @param  array $path
+	 */
+	public function removePaths(array $paths)
+	{
+		array_map(array($this, 'removePath'), $paths);
 	}
 }

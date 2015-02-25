@@ -4,22 +4,24 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
 namespace Fuel\Config;
 
-use Exception;
-
+/**
+ * INI configuration loading and formatting (not implemented) logic
+ *
+ * @package Fuel\Config
+ *
+ * @since 2.0
+ */
 class Ini implements Handler
 {
-    /**
-     * Load a config file
-     *
-     * @param  string $file file path
-     * @return array  config contents
-     */
+	/**
+	 * {@inheritdoc}
+	 */
     public function load($file)
     {
         $contents = file_get_contents($file);
@@ -27,14 +29,11 @@ class Ini implements Handler
         return parse_ini_string($contents, true);
     }
 
-    /**
-     * Format a config file for saving. [NOT IMPLEMENTED]
-     *
-     * @param  array     $data config data
-     * @throws Exception
-     */
+	/**
+	 * {@inheritdoc}
+	 */
     public function format($data)
     {
-        throw new Exception('Ini export is not available');
+        throw new \LogicException('Ini export is not available');
     }
 }
