@@ -1,6 +1,6 @@
 {
 	"name": "fuelphp/config",
-	"description": "Dependency handling.",
+	"description": "Fuel package for loading, saving and accessing config settings",
 	"keywords": ["config", "configuration"],
 	"homepage": "https://github.com/fuelphp/config",
 	"license": "MIT",

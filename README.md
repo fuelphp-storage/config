@@ -6,7 +6,7 @@
 [![HHVM Status](https://img.shields.io/hhvm/fuelphp/config.svg?style=flat-square)](http://hhvm.h4cc.de/package/fuelphp/config)
 
 
-This library handles config files. It's responsible for loading, saving and accessing config settings.
+**Fuel package for loading, saving and accessing config settings.**
 
 There are multiple formats in which config files can be handled:
 
@@ -97,3 +97,13 @@ $setting = $config['setting'];
 ```
 
 The first way does allow you to supply a default
+
+
+## Contributing
+
+Thank you for considering contribution to FuelPHP framework. Please see [CONTRIBUTING](https://github.com/fuelphp/fuelphp/blob/master/CONTRIBUTING.md) for details.
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
