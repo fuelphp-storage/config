@@ -10,6 +10,7 @@
 
 namespace Fuel\Config;
 
+use Fuel\Common\Arr;
 use Fuel\FileSystem\Finder;
 use Fuel\Common\DataContainer;
 
@@ -196,7 +197,7 @@ class Container extends DataContainer
 		{
 			$extension = pathinfo($path, PATHINFO_EXTENSION);
 			$handler = $this->getHandler($extension);
-			$config = \Arr::merge($config, $handler->load($path));
+			$config = Arr::merge($config, $handler->load($path));
 		}
 
 		if ($group)
