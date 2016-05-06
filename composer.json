@@ -12,8 +12,8 @@
 	],
 	"require": {
 		"php": ">=5.4",
-		"fuelphp/filesystem": "~2.0",
-		"fuelphp/common": "~2.0"
+		"fuelphp/filesystem": "dev-master",
+		"fuelphp/common": "dev-master"
 	},
 	"require-dev": {
 		"codeception/codeception": "~2.0"
@@ -30,5 +30,6 @@
 		"branch-alias": {
 			"dev-master": "2.0-dev"
 		}
-	}
+	},
+	"minimum-stability": "dev"
 }
