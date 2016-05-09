@@ -17,7 +17,7 @@ use Fuel\Common\DataContainer;
 /**
  * Holds configuration data
  */
-class Container extends DataContainer
+class Container extends DataContainer implements ContainerInterface
 {
 	/**
 	 * @var string
@@ -121,7 +121,7 @@ class Container extends DataContainer
 	/**
 	 * Sets the environment
 	 *
-	 * @param string $enviroment
+	 * @param string $environment
 	 */
 	public function setEnvironment($environment)
 	{
@@ -377,7 +377,7 @@ class Container extends DataContainer
 	/**
 	 * Removes paths
 	 *
-	 * @param  array $path
+	 * @param array $paths
 	 */
 	public function removePaths(array $paths)
 	{

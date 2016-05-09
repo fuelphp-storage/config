@@ -3,7 +3,6 @@
 [![Build Status](https://img.shields.io/travis/fuelphp/config.svg?style=flat-square)](https://travis-ci.org/fuelphp/config)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/fuelphp/config.svg?style=flat-square)](https://scrutinizer-ci.com/g/fuelphp/config)
 [![Quality Score](https://img.shields.io/scrutinizer/g/fuelphp/config.svg?style=flat-square)](https://scrutinizer-ci.com/g/fuelphp/config)
-[![HHVM Status](https://img.shields.io/hhvm/fuelphp/config.svg?style=flat-square)](http://hhvm.h4cc.de/package/fuelphp/config)
 
 
 **Fuel package for loading, saving and accessing config settings.**
